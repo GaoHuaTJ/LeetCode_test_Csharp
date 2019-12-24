@@ -12,6 +12,10 @@
 
 所以返回 [0, 1]
 
+答案：
+
+![第一天](\img\第一天.png)
+
 
 来源：力扣（LeetCode）
 链接：https://leetcode-cn.com/problems/two-sum

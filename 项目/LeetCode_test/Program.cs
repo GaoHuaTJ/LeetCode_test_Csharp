@@ -50,7 +50,6 @@ namespace LeetCode_test
             {
                 ht.Add(nums[i],i );
             }
-
             for (int i = 0; i < nums.Length; i++)
             {
                 int complement = target - nums[i];
