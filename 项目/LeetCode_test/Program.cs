@@ -165,7 +165,7 @@ namespace LeetCode_test
                 foreach (var item in ansList)
                 {
                     ans =ans+ item * (int)Math.Pow(10, n - 1);
-                    if(ans>Int32.MaxValue)
+                    if(ans>Int32.MaxValue)//如果是大于int32的最大值，返回0
                     {
                         return 0;
                     }
