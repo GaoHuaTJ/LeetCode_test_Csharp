@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.InteropServices;
 
 namespace LeetCode_test
@@ -14,8 +15,13 @@ namespace LeetCode_test
             //day1_test.Test();
 
             //第二天测试
-            Day2 day2_test = new Day2(1534236469);
-            day2_test.Test();
+            //Day2 day2_test = new Day2(1534236469);
+            //day2_test.Test();
+            //Console.ReadKey();
+
+            //第三天测试
+            Day3 day3Test=new Day3(101);
+            Console.WriteLine(day3Test.Test());
             Console.ReadKey();
         }
 
@@ -93,6 +99,7 @@ namespace LeetCode_test
             }
         }
 
+        //逆序输出
         //给出一个 32 位的有符号整数，你需要将这个整数中每位上的数字进行反转。
         //示例 1:
         //输入: 123
@@ -172,6 +179,66 @@ namespace LeetCode_test
                     n--;
                 }
                 return isNegative == true ? -Convert.ToInt32(ans):Convert.ToInt32(ans);
+            }
+        }
+
+        //回文数
+        //判断一个整数是否是回文数。回文数是指正序（从左向右）和倒序（从右向左）读都是一样的整数。
+        private class Day3
+        {
+            public Day3(int x)
+            {
+                this._x = x;
+            }
+
+            private int _x;
+
+            /// <summary>
+            /// 测试函数
+            /// </summary>
+            /// <param name="x">输入要测试的整数</param>
+            /// <returns>输出是不是回文数</returns>
+            public  bool Test()
+            {
+                Console.WriteLine(IsPalindrome(_x) ? $"{_x}是回文数" : $"{_x}不是回文数");
+                return IsPalindrome(_x) ;
+            }
+
+            /// <summary>
+            /// 输入一个整数，如果是回文数，返回true，否则false
+            /// </summary>
+            /// <param name="x">输入整数</param>
+            /// <returns>输出bool</returns>
+            private static  bool IsPalindrome(int x)
+            {
+                if (x<0)
+                {
+                    return false;//负数没有回文数
+                }
+                else if (x>=0 & x<10)//个位数全部都是回文数
+                {
+                    return true;
+                }
+                else
+                {
+                    int n = 1;
+                    //记录是几位数
+                    while (x / Math.Pow(10, n)>=10)
+                    {
+                        n++;
+                    }
+                    List<int> numList = new List<int>();//存储每一位的数字
+                    while (n>=0)
+                    {
+                        int temp = (int)(x / (Math.Pow(10, n)));
+                        numList.Add(temp);
+                        x -= temp * ((int)Math.Pow(10, n));
+                        n--;
+                    }
+                    List<int> numReverseList = new List<int>(numList.ToArray());//存储反转元素
+                    numReverseList.Reverse();//进行反转
+                    return !numList.Where((t, i) => t != numReverseList[i]).Any();
+                }
             }
         }
     }
