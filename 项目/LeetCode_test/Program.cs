@@ -20,9 +20,22 @@ namespace LeetCode_test
             //Console.ReadKey();
 
             //第三天测试
-            Day3 day3Test=new Day3(101);
-            Console.WriteLine(day3Test.Test());
+            //Day3 day3Test=new Day3(101);
+            //Console.WriteLine(day3Test.Test());
+            //Console.ReadKey();
+
+            //第四天测试；太简单了。不想多写
+            //int[] answer =new []{1,2,3};
+            //int[] guess = new[] { 3, 2, 3 };
+            //Console.WriteLine($"猜中了{Day4.game(guess, answer)}次");
+
+            //第四天还是太简单了
+            string J = "Aa";
+            string S = "aAAbbbb";
+            Console.WriteLine($"{Day5.NumJewelsInStones(J, S)}");
+
             Console.ReadKey();
+
         }
 
         //两数之和：
@@ -239,6 +252,42 @@ namespace LeetCode_test
                     numReverseList.Reverse();//进行反转
                     return !numList.Where((t, i) => t != numReverseList[i]).Any();
                 }
+            }
+        }
+        
+        
+        //猜数字
+        //小A 和 小B 在玩猜数字。小B 每次从 1, 2, 3 中随机选择一个，小A 每次也从 1, 2, 3 中选择一个猜。他们一共进行三次这个游戏，请返回 小A 猜对了几次？
+        //输入的guess数组为 小A 每次的猜测，answer数组为 小B 每次的选择。guess和answer的长度都等于3
+        class Day4
+        {
+            public static int game(int[] guess, int[] answer)
+            {
+                //记录初始的记录数值
+                int times=0;
+                for (int i = 0; i < answer.Length; i++)
+                {
+                    if (answer[i]==guess[i])
+                    {
+                        times++;
+                    }
+                }
+                return times;
+            }
+        }
+
+        //宝石与石头
+        class Day5
+        {
+            /// <summary>
+            ///判断石头中有多少个是钻石（区分大小写）
+            /// </summary>
+            /// <param name="J">钻石代码</param>
+            /// <param name="S">石头代码</param>
+            /// <returns></returns>
+            public static int NumJewelsInStones(string J, string S)
+            {
+                return J.Sum(j => S.Count(s => j == s));
             }
         }
     }
