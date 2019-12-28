@@ -29,11 +29,14 @@ namespace LeetCode_test
             //int[] guess = new[] { 3, 2, 3 };
             //Console.WriteLine($"猜中了{Day4.game(guess, answer)}次");
 
-            //第四天还是太简单了
-            string J = "Aa";
-            string S = "aAAbbbb";
-            Console.WriteLine($"{Day5.NumJewelsInStones(J, S)}");
+            //第五天还是太简单了
+            //string J = "Aa";
+            //string S = "aAAbbbb";
+            //Console.WriteLine($"{Day5.NumJewelsInStones(J, S)}");
 
+            //加深对取模运算的理解
+            Day6 day6=new Day6(899);
+            day6.Test();
             Console.ReadKey();
 
         }
@@ -288,6 +291,40 @@ namespace LeetCode_test
             public static int NumJewelsInStones(string J, string S)
             {
                 return J.Sum(j => S.Count(s => j == s));
+            }
+        }
+
+        /// <summary>
+        /// 整数的各位积和之差
+        /// </summary>
+        class Day6
+        {
+            private  int _x;
+
+            public  Day6(int x)
+            {
+                this._x = x;
+            }
+
+            public  void Test()
+            {
+                Console.WriteLine($"各位上的数字乘积与数字加和只差为{SubtractProductAndSum(_x)}");
+            }
+
+            private static int SubtractProductAndSum(int x)
+            {
+                 int sum = 0;
+                int cum = 1;
+                while (x>0)
+                {
+                    //取模
+                    int digit = x % 10;
+                    //迭代
+                    x /= 10;
+                    sum += digit;
+                    cum *= digit;
+                }
+                return cum-sum;
             }
         }
     }
