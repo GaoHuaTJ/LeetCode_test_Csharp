@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Security.Cryptography.X509Certificates;
 
 namespace LeetCode_test
 {
@@ -35,8 +36,18 @@ namespace LeetCode_test
             //Console.WriteLine($"{Day5.NumJewelsInStones(J, S)}");
 
             //加深对取模运算的理解
-            Day6 day6=new Day6(899);
-            day6.Test();
+            //Day6 day6=new Day6(899);
+            //day6.Test();
+            //
+
+
+            //Console.WriteLine(Day7.DefangIPaddr("255.100.50.0"));
+
+
+            Day8 day8=new Day8();
+            int[] nums = {-10, 2000, -333};
+            ;
+            Console.WriteLine($"有{day8.FindNumbers(nums)}个位数为偶数的数字");
             Console.ReadKey();
 
         }
@@ -325,6 +336,64 @@ namespace LeetCode_test
                     cum *= digit;
                 }
                 return cum-sum;
+            }
+        }
+
+
+        class Day7
+        {
+
+            public static string DefangIPaddr(string address)
+            {
+                return address.Replace(".","[.]");
+            }
+        }
+
+
+
+        class Day8
+        {
+            public int FindNumbers(int[] nums)
+            {
+                int items = 0;
+                foreach (var num in nums)
+                {
+
+                    //判断是正数还是负数
+                    if (num<0)//负数的情况下转为正数
+                    {
+                        if (GetNums(-num) % 2 == 0)
+                        {
+                            items++;
+                        }
+                    }
+                    else//正数的情况
+                    {
+                        if (GetNums(num) % 2 == 0)
+                        {
+                            items++;
+                        }
+                    }
+
+                }
+
+                return items;
+            }
+            /// <summary>
+            /// 输出输入数字的位数
+            /// </summary>
+            /// <param name="num">输入的数字</param>
+            /// <returns></returns>
+            public int GetNums(int num)
+            {
+                //
+                int nums = 0;//记录当前的整数位数
+                while (num>0)
+                {
+                    num /= 10;
+                    nums++;
+                }
+                return nums;
             }
         }
     }
